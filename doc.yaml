@@ -1,0 +1,21 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UsePhpVersion@0
+    inputs:
+      version: '8.1'
+
+  - script: |
+      php -v
+      echo "Déploiement fictif terminé."
+    displayName: 'Exécuter le script PHP'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$(Build.SourcesDirectory)'
+      artifactName: 'site-web'
+
